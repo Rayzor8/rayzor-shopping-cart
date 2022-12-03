@@ -1,9 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Titan+One&family=Zen+Dots&display=swap");
+
+:root {
+  --font-inter: "Inter", sans-serif;
+  --zen-dots: "Zen Dots", sans-serif;
+  --titan-one: "Titan One", cursive;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-inter);
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background: #076585;
+  background: -webkit-linear-gradient(to right, #fff, #076585);
+  background: linear-gradient(to right, #fff, #076585);
+}
+
+h1 {
+  font-family: var(--zen-dots);
 }
 
 a {

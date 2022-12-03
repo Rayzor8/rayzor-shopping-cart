@@ -1,0 +1,15 @@
+.navbar .navbar-brand {
+  font-family: var(--titan-one);
+}
+
+.navbar #cart-count {
+  bottom: -10px;
+  right: 5px;
+  font-size: 16px;
+  min-width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--titan-one);
+}
