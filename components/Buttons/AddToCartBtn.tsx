@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Stack } from "react-bootstrap";
 import { HiShoppingCart } from "react-icons/hi";
-const CardButton = () => {
+const AddToCartBtntsx = () => {
   return (
     <Button variant="dark">
       <Stack direction="horizontal" gap={2}>
@@ -12,4 +12,4 @@ const CardButton = () => {
   );
 };
 
-export default CardButton;
+export default AddToCartBtntsx;

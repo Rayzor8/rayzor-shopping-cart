@@ -1,35 +1,31 @@
 import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { Products } from "../store";
-import { ParsedUrlQuery } from "querystring";
 import Image from "next/image";
 
 interface Params {
-  id: string;
+  params: {
+    id: string;
+  };
 }
 
 export const getStaticPaths = async () => {
   const res = await fetch(process.env.DATA_URL as string);
   const products: Products[] = await res.json();
 
+  const getProductId = products.map((product) => ({
+    params: { id: String(product.id) },
+  }));
+
   return {
-    paths: products.map((product) => ({
-      params: { id: String(product.id) },
-    })),
+    paths: getProductId,
     fallback: false,
   };
 };
 
-export const getStaticProps = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+export const getStaticProps = async ({ params }: Params) => {
   const res = await fetch(`${process.env.DATA_URL}${params.id}`);
   const product: Products = await res.json();
-  console.log(res);
   return {
     props: {
       product,

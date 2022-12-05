@@ -3,7 +3,7 @@ import { Card, Stack } from "react-bootstrap";
 import { Products } from "../../pages/store";
 import Link from "next/link";
 import Image from "next/image";
-import { CardButton } from "../Buttons";
+import { AddToCartBtn } from "../Buttons";
 
 const StoreItem = (props: Products) => {
   return (
@@ -24,7 +24,7 @@ const StoreItem = (props: Products) => {
         <Card.Text className="fw-light">{props.title}</Card.Text>
 
         <Stack direction="horizontal" gap={2} className="mx-auto">
-          <CardButton />
+          <AddToCartBtn />
           <Link href={`/detail/${props.id}`} className="btn btn-dark">
             <span className="text-info fw-bold">Details</span>
           </Link>

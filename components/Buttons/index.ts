@@ -1,1 +1,1 @@
-export {default as CardButton} from './CardButton'
+export {default as AddToCartBtn} from './AddToCartBtn'

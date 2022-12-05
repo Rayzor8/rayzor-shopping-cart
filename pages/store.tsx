@@ -1,7 +1,9 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Stack } from "react-bootstrap";
 import dynamic from "next/dynamic";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { SearchForm } from "../components/Forms";
+import { SelectCategory } from "../components/Dropdowns";
 
 const DynamicStoreItem = dynamic(
   () => import("../components/StorePages/StoreItem"),
@@ -25,8 +27,6 @@ export interface Rating {
   count: number;
 }
 
-// https://fakestoreapi.com/products
-
 export const getStaticProps: GetStaticProps<{
   products: Products[];
 }> = async () => {
@@ -42,9 +42,13 @@ export const getStaticProps: GetStaticProps<{
 const Store = ({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // console.log(products);
   return (
-    <section>
+    <Stack gap={4}>
+      <Stack gap={3} className="w-50" direction="horizontal">
+        <SearchForm />
+        <SelectCategory />
+      </Stack>
+
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
         {products.map((product) => {
           return (
@@ -56,7 +60,7 @@ const Store = ({
           );
         })}
       </Row>
-    </section>
+    </Stack>
   );
 };
 
