@@ -14,7 +14,7 @@ const Navbar = () => {
     <NavbarBs bg="light" variant="light" className="shadow-sm mb-4">
       <Container>
         <NavbarBs.Brand className="px-3 bg-dark rounded-pill text-info">
-          Rayzor_CSGO
+          Rayzor_Store
         </NavbarBs.Brand>
         <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="me-auto">
@@ -31,7 +31,7 @@ const Navbar = () => {
           </Nav.Link>
         </Nav>
         <Button
-          variant="outline-dark"
+          variant="dark"
           className="rounded-pill position-relative bottom-0"
           title="Your cart"
           size="lg"
