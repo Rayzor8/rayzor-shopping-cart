@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Products } from "../store";
 import Image from "next/image";
+import { Products } from "../../types/storeTypes";
+
 
 interface Params {
   params: {
@@ -34,7 +35,6 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 const Details = ({ product }: { product: Products }) => {
-  // console.log(product);
   return (
     <div>
       STORE DETAIL

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 const SearchForm = () => {
   return (
     <>
-      <Form.Control type="text" placeholder="Search name product here" />
+      <Form.Control type="text" placeholder="Search name product here"/>
     </>
   );
 };
