@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Container from "react-bootstrap/Container";
-import Navbar from "./Navbar";
+import {Navbar} from "./Navbar";
 
 interface LayoutProps {
   children: React.ReactElement;

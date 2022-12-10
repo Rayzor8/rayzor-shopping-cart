@@ -5,6 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { SearchForm } from "../components/Forms";
 import { SelectCategory } from "../components/Dropdowns";
 import { Products } from "../types/storeTypes";
+import { useCartContext } from "../context/CartContext";
 
 
 const DynamicStoreItem = dynamic(
@@ -19,17 +20,15 @@ export const getStaticProps: GetStaticProps<{
 }> = async () => {
   const res = await fetch(process.env.DATA_URL as string);
   const products: Products[] = await res.json();
-
+  
   return {
     props: {
       products,
     },
   };
 };
-const Store = ({
-  products,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [productsData, setProductsData] = useState(products);
+const Store = () => {
+  const {products} = useCartContext()
   return (
     <Stack gap={4}>
       <Row className="g-3">

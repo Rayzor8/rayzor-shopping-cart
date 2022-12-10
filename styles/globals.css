@@ -40,6 +40,14 @@ a {
   color: rgb(13, 202, 240);
 }
 
+
+.offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl {
+  width: 550px !important;
+  background: #076585;
+  background: -webkit-linear-gradient(to right, #fff, #076585);
+  background: linear-gradient(to right, #fff, #076585);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

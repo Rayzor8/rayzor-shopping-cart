@@ -3,9 +3,11 @@ import React from "react";
 import { Navbar as NavbarBs, Nav, Container, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { HiShoppingCart } from "react-icons/hi";
+import { useCartContext } from "../../context/CartContext";
 
 const Navbar = () => {
   const router = useRouter();
+  const {openNavCart,closeNavCart,cartQuantity,cartItems} = useCartContext()
 
   const activeNav = (href: string) =>
     router.pathname == href ? "active text-info" : "";
@@ -30,18 +32,20 @@ const Navbar = () => {
             <b className={`p-2 ${activeNav("/about")}`}>About</b>
           </Nav.Link>
         </Nav>
+        
         <Button
           variant="dark"
           className="rounded-pill position-relative bottom-0"
           title="Your cart"
           size="lg"
+          onClick={openNavCart}
         >
           <HiShoppingCart />
           <div
             id="cart-count"
             className="position-absolute bg-info rounded-circle"
           >
-            12
+            {cartQuantity}
           </div>
         </Button>
       </Container>
