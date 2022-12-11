@@ -40,6 +40,7 @@ export const getStaticProps = async ({ params }: Params) => {
 
   const ProductsRes = await fetch(process.env.DATA_URL as string);
   const products: Products[] = await ProductsRes.json();
+
   return {
     props: {
       products,

@@ -1,19 +1,39 @@
-import React from "react";
+import { GetStaticProps } from "next";
+import React, { Dispatch, SetStateAction } from "react";
+import { Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useCartContext } from "../../context/CartContext";
+import { Products } from "../../types/storeTypes";
+import { capitalizedWord } from "../../utilities";
 
-const SelectCategory = () => {
+type SelectCategoryProps = {
+  productsData: Products[];
+  setProductsData: Dispatch<SetStateAction<Products[]>>;
+};
+
+const SelectCategory = ({ setProductsData }: SelectCategoryProps) => {
+  const { categories, products, setSelectedCategory } = useCartContext();
+
+  const filterByCategories = (value: string) => {
+    setProductsData(products.filter((product) => product.category === value));
+    setSelectedCategory(value);
+  };
+
   return (
     <DropdownButton
       id="dropdown-basic-button"
       title={<span className="text-info fw-bold">Select Category</span>}
       variant="dark"
     >
-      <Dropdown.Item href="#/action-1">All Products</Dropdown.Item>
-      <Dropdown.Item href="#/action-1">Men clothing</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Jewelery</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Electronics</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Women clothing</Dropdown.Item>
+      <Dropdown.Item onClick={() => setProductsData(products)}>
+        All Products
+      </Dropdown.Item>
+      {categories.map((category, index) => (
+        <Dropdown.Item key={index} onClick={() => filterByCategories(category)}>
+          {capitalizedWord(category)}
+        </Dropdown.Item>
+      ))}
     </DropdownButton>
   );
 };

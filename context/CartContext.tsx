@@ -1,12 +1,20 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import PaymentModal from "../components/Modals/PaymentModal";
 import { OffcanvasNav } from "../components/Navbar";
-import { Products } from "../types/storeTypes";
+import { Categories, Products } from "../types/storeTypes";
 
 type CartProviderProps = {
   children: ReactNode;
   pageProps: {
     products: Products[];
+    categories: Categories;
   };
 };
 type CartItem = {
@@ -26,6 +34,9 @@ type ShoppingCartContext = {
   products: Products[];
   openModalPayment: () => void;
   closeModalPayment: () => void;
+  categories: Categories;
+  selectedCategory: string;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
 };
 
 export const useCartContext = () => useContext(CartContext);
@@ -36,12 +47,12 @@ export const ShopingCartProvider = ({
   children,
   pageProps,
 }: CartProviderProps) => {
-  const { products } = pageProps;
-
+  const { products, categories } = pageProps;
+  // const [productsData,setProductsData] = useState([...products])
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isOpenNavCart, setIsOpenNavCart] = useState(false);
   const [isOpenModalPayment, setIsOpenModalPayment] = useState(false);
-  
+  const [selectedCategory, setSelectedCategory] = useState("");
   const cartQuantity = cartItems.reduce((quantity, item) => {
     return item.quantity + quantity;
   }, 0);
@@ -112,11 +123,14 @@ export const ShopingCartProvider = ({
         products,
         openModalPayment,
         closeModalPayment,
+        categories,
+        selectedCategory,
+        setSelectedCategory,
       }}
     >
       {children}
       <OffcanvasNav isOpenNavCart={isOpenNavCart} />
-      <PaymentModal isOpenModalPayment={isOpenModalPayment}/>
+      <PaymentModal isOpenModalPayment={isOpenModalPayment} />
     </CartContext.Provider>
   );
 };
