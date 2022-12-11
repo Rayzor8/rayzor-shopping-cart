@@ -20,15 +20,18 @@ const SelectCategory = ({ setProductsData }: SelectCategoryProps) => {
     setSelectedCategory(value);
   };
 
+  const handleAllProducts = () => {
+    setProductsData(products);
+    setSelectedCategory("");
+  };
+
   return (
     <DropdownButton
       id="dropdown-basic-button"
       title={<span className="text-info fw-bold">Select Category</span>}
       variant="dark"
     >
-      <Dropdown.Item onClick={() => setProductsData(products)}>
-        All Products
-      </Dropdown.Item>
+      <Dropdown.Item onClick={handleAllProducts}>All Products</Dropdown.Item>
       {categories.map((category, index) => (
         <Dropdown.Item key={index} onClick={() => filterByCategories(category)}>
           {capitalizedWord(category)}
