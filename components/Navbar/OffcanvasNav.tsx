@@ -1,5 +1,5 @@
 import React from "react";
-import { Offcanvas, Stack } from "react-bootstrap";
+import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useCartContext } from "../../context/CartContext";
 import { Products } from "../../types/storeTypes";
 import OffcanvasNavItem from "./OffcanvasNavItem";
@@ -10,7 +10,8 @@ type OffcanvasNavProps = {
 };
 
 const OffcanvasNav = ({ isOpenNavCart }: OffcanvasNavProps) => {
-  const { closeNavCart, cartQuantity, cartItems } = useCartContext();
+  const { closeNavCart, cartItems, products, openModalPayment } =
+    useCartContext();
 
   const renderItem =
     cartItems.length > 0 ? (
@@ -19,7 +20,14 @@ const OffcanvasNav = ({ isOpenNavCart }: OffcanvasNavProps) => {
       <p className="fw-bold">
         <BiSad className="fs-4" /> Empty Cart...
       </p>
-    ); 
+    );
+  
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, cartItem) => {
+      const findItem = products?.find((product) => product.id === cartItem.id);
+      return total + (findItem?.price || 0) * cartItem.quantity;
+    }, 0);
+  };
 
   return (
     <Offcanvas show={isOpenNavCart} onHide={closeNavCart} placement="end">
@@ -33,7 +41,17 @@ const OffcanvasNav = ({ isOpenNavCart }: OffcanvasNavProps) => {
       </Offcanvas.Header>
 
       <Offcanvas.Body className="g-3">
-        <Stack gap={3}>{renderItem}</Stack>
+        <Stack gap={3}>
+          {renderItem}
+          <span className="ms-auto fs-4 fw-bold text-info bg-dark px-2 py-2 rounded">
+            Total : $ {getTotalPrice()}
+          </span>
+          {getTotalPrice() ? (
+            <Button onClick={openModalPayment} className="w-max">Purchase</Button>
+          ) : (
+            ""
+          )}
+        </Stack>
       </Offcanvas.Body>
     </Offcanvas>
   );

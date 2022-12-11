@@ -5,6 +5,8 @@ import { Products } from "../../types/storeTypes";
 import { FcRating } from "react-icons/fc";
 import { BiTransfer } from "react-icons/bi";
 import { Col, Row, Stack } from "react-bootstrap";
+import { useCartContext } from "../../context/CartContext";
+import { InputsCartQuantity } from "../../components/Buttons";
 
 interface Params {
   params: {
@@ -27,17 +29,20 @@ export const getStaticPaths = async () => {
   }));
 
   return {
-    paths: getProductId,
+    paths: [...getProductId],
     fallback: false,
   };
 };
 
 export const getStaticProps = async ({ params }: Params) => {
-  const res = await fetch(`${process.env.DATA_URL}${params.id}`);
-  const product: Products = await res.json();
-  console.log(product);
+  const productRes = await fetch(`${process.env.DATA_URL}${params.id}`);
+  const product: Products = await productRes.json();
+
+  const ProductsRes = await fetch(process.env.DATA_URL as string);
+  const products: Products[] = await ProductsRes.json();
   return {
     props: {
+      products,
       product,
     },
   };
@@ -46,7 +51,8 @@ export const getStaticProps = async ({ params }: Params) => {
 const Details = (props: PageProps) => {
   const { pageProps } = props;
   const { product } = pageProps;
-  console.log(product);
+  const { getItemQuantity } = useCartContext();
+  const quantity = getItemQuantity(product.id);
   return (
     <Stack gap={4}>
       <h1>STORE DETAIL</h1>
@@ -61,8 +67,8 @@ const Details = (props: PageProps) => {
           <Image
             src={product.image}
             alt="picture of product"
-            width={400}
-            height={340}
+            width={420}
+            height={380}
             priority={true}
           />
         </Col>
@@ -82,10 +88,22 @@ const Details = (props: PageProps) => {
             <p>{product.description}.</p>
           </Stack>
         </Col>
-        <Col xl={3} className="bg-danger">
+        <Col xl={3} className="p-3">
           <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sed a
-            veniam eum magnam beatae velit exercitationem iure fugit optio!
+            <Stack
+              gap={3}
+              className="d-flex justify-content-center align-items-center"
+            >
+              <p className="fs-6">Set amount and notes</p>
+              <InputsCartQuantity id={product.id} quantity={quantity} />
+              {quantity > 0 ? (
+                <p className="fw-bold fs-5">
+                  Subtotal : ${product.price} x {quantity}
+                </p>
+              ) : (
+                ""
+              )}
+            </Stack>
           </div>
         </Col>
       </Row>

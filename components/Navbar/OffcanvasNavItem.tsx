@@ -10,8 +10,8 @@ type OffcanvasNavItemProps = {
 };
 const OffcanvasNavItem = ({ id, quantity }: OffcanvasNavItemProps) => {
   const { products, cartQuantity } = useCartContext();
-  const findItem = products.find((product) => product.id === id);
-  console.log(findItem);
+  const findItem = products?.find((product) => product.id === id);
+
   if (!findItem) return null;
 
   return (
@@ -35,7 +35,7 @@ const OffcanvasNavItem = ({ id, quantity }: OffcanvasNavItemProps) => {
           <p className="fw-bold mt-3">
             ${findItem.price} x {quantity}{" "}
           </p>
-          <p className="fw-bold">Total : ${findItem.price * cartQuantity}</p>
+          <p className="fw-bold">Total : ${findItem.price * quantity}</p>
         </div>
       </div>
       <RemoveButton id={id} />

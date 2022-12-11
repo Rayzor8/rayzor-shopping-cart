@@ -7,7 +7,7 @@ import { useCartContext } from "../../context/CartContext";
 
 const Navbar = () => {
   const router = useRouter();
-  const {openNavCart,closeNavCart,cartQuantity,cartItems} = useCartContext()
+  const {openNavCart,cartQuantity} = useCartContext()
 
   const activeNav = (href: string) =>
     router.pathname == href ? "active text-info" : "";
@@ -26,10 +26,6 @@ const Navbar = () => {
 
           <Nav.Link href="/store" as={Link}>
             <b className={`p-2 ${activeNav("/store")}`}>Store</b>
-          </Nav.Link>
-
-          <Nav.Link as={Link} href="/about">
-            <b className={`p-2 ${activeNav("/about")}`}>About</b>
           </Nav.Link>
         </Nav>
         

@@ -9,7 +9,7 @@ import { useCartContext } from "../../context/CartContext";
 const StoreItem = (props: Products) => {
   const { getItemQuantity } = useCartContext();
   const { id } = props;
-  const quantity = getItemQuantity(id);
+
 
   return (
     <Card className="h-100 shadow-lg border-0">
@@ -30,12 +30,6 @@ const StoreItem = (props: Products) => {
         <Card.Text className="fw-light">{props.title}</Card.Text>
 
         <Stack direction="horizontal" gap={3} className="mx-auto">
-          {quantity === 0 ? (
-            <AddToCartBtn id={id} />
-          ) : (
-            <InputsCartQuantity id={id} quantity={quantity} />
-          )}
-
           <Link href={`/detail/${props.id}`} className="btn btn-dark">
             <span className="text-info fw-bold">Details</span>
           </Link>

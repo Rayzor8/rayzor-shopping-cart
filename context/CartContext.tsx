@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import PaymentModal from "../components/Modals/PaymentModal";
 import { OffcanvasNav } from "../components/Navbar";
 import { Products } from "../types/storeTypes";
 
@@ -22,7 +23,9 @@ type ShoppingCartContext = {
   removeCartItem: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
-  products: Products[]
+  products: Products[];
+  openModalPayment: () => void;
+  closeModalPayment: () => void;
 };
 
 export const useCartContext = () => useContext(CartContext);
@@ -34,10 +37,11 @@ export const ShopingCartProvider = ({
   pageProps,
 }: CartProviderProps) => {
   const { products } = pageProps;
+
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isOpenNavCart, setIsOpenNavCart] = useState(false);
-
-
+  const [isOpenModalPayment, setIsOpenModalPayment] = useState(false);
+  
   const cartQuantity = cartItems.reduce((quantity, item) => {
     return item.quantity + quantity;
   }, 0);
@@ -90,6 +94,10 @@ export const ShopingCartProvider = ({
 
   const closeNavCart = () => setIsOpenNavCart(false);
 
+  const openModalPayment = () => setIsOpenModalPayment(true);
+  const closeModalPayment = () => setIsOpenModalPayment(false);
+
+
   return (
     <CartContext.Provider
       value={{
@@ -102,10 +110,13 @@ export const ShopingCartProvider = ({
         cartItems,
         cartQuantity,
         products,
+        openModalPayment,
+        closeModalPayment,
       }}
     >
       {children}
-      <OffcanvasNav isOpenNavCart={isOpenNavCart}/>
+      <OffcanvasNav isOpenNavCart={isOpenNavCart} />
+      <PaymentModal isOpenModalPayment={isOpenModalPayment}/>
     </CartContext.Provider>
   );
 };
