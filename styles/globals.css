@@ -12,6 +12,7 @@ body {
   margin: 0;
   font-family: var(--font-inter);
   overflow-y: scroll;
+  width: 100vw;
 }
 
 .main {
@@ -23,7 +24,37 @@ body {
 }
 
 h1 {
-  font-family: var(--zen-dots);
+  font-family: var(--titan-one);
+}
+
+.banner-title {
+  font-size: 4rem;
+  text-shadow: 0 1px 0px rgb(13, 202, 240), 1px 0 0px rgb(13, 202, 240),
+    1px 2px 1px rgb(13, 202, 240), 2px 1px 1px rgb(13, 202, 240),
+    2px 3px 2px rgb(13, 202, 240), 3px 2px 2px rgb(13, 202, 240),
+    3px 4px 2px rgb(13, 202, 240), 4px 3px 3px rgb(13, 202, 240),
+    4px 5px 3px rgb(13, 202, 240), 5px 4px 2px rgb(13, 202, 240),
+    5px 6px 2px rgb(13, 202, 240), 6px 5px 2px rgb(13, 202, 240),
+    6px 7px 1px rgb(13, 202, 240), 7px 6px 1px rgb(13, 202, 240),
+    7px 8px 0px rgb(13, 202, 240), 8px 7px 0px rgb(13, 202, 240);
+}
+
+.img-banner {
+  animation: updown 3s linear infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
 }
 
 a {
@@ -40,8 +71,12 @@ a {
   color: rgb(13, 202, 240);
 }
 
-
-.offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl {
+.offcanvas,
+.offcanvas-lg,
+.offcanvas-md,
+.offcanvas-sm,
+.offcanvas-xl,
+.offcanvas-xxl {
   width: 550px !important;
   background: #076585;
   background: -webkit-linear-gradient(to right, #fff, #076585);
@@ -55,5 +90,35 @@ a {
   body {
     color: white;
     background: black;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .img-banner {
+    width: 480px;
+  }
+
+  .banner-title {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .img-banner {
+    width: 360px;
+  }
+
+  .banner-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .img-banner {
+    width: 300px;
+  }
+
+  .banner-title {
+    font-size: 2rem;
   }
 }

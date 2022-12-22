@@ -1,5 +1,10 @@
+import { Banner, Skills } from "../components/Homepage";
+
 export default function Home() {
-  return <section>
-    <h1>HOMEPAGE</h1>
-  </section>;
+  return (
+    <>
+      <Banner />
+      <Skills />
+    </>
+  );
 }
