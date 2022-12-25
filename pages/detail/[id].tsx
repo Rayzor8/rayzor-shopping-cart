@@ -56,7 +56,7 @@ const Details = (props: PageProps) => {
   const quantity = getItemQuantity(product.id);
   return (
     <Stack gap={4}>
-      <h1>STORE DETAIL</h1>
+      <h1 className="banner-title">STORE DETAIL</h1>
 
       <Row
         xs={1}

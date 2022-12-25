@@ -7,43 +7,45 @@ import { useCartContext } from "../../context/CartContext";
 
 const Navbar = () => {
   const router = useRouter();
-  const {openNavCart,cartQuantity} = useCartContext()
+  const { openNavCart, cartQuantity } = useCartContext();
 
   const activeNav = (href: string) =>
     router.pathname == href ? "active text-info" : "";
 
   return (
-    <NavbarBs bg="light" variant="light" className="shadow-sm mb-4">
+    <NavbarBs bg="light" variant="light" className="shadow-sm mb-4" expand="md">
       <Container>
         <NavbarBs.Brand className="px-3 bg-dark rounded-pill text-info">
           Rayzor_Store
         </NavbarBs.Brand>
         <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
-        <Nav className="me-auto">
-          <Nav.Link as={Link} href="/">
-            <b className={`p-2 ${activeNav("/")}`}>Home</b>
-          </Nav.Link>
+        <NavbarBs.Collapse id="basic-navbar-nav">
+          <Nav className="me-md-auto p-2 p-md-0">
+            <Nav.Link as={Link} href="/">
+              <b className={`p-2 ${activeNav("/")}`}>Home</b>
+            </Nav.Link>
 
-          <Nav.Link href="/store" as={Link}>
-            <b className={`p-2 ${activeNav("/store")}`}>Store</b>
-          </Nav.Link>
-        </Nav>
-        
-        <Button
-          variant="dark"
-          className="rounded-pill position-relative bottom-0"
-          title="Your cart"
-          size="lg"
-          onClick={openNavCart}
-        >
-          <HiShoppingCart />
-          <div
-            id="cart-count"
-            className="position-absolute bg-info rounded-circle"
+            <Nav.Link href="/store" as={Link}>
+              <b className={`p-2 ${activeNav("/store")}`}>Store</b>
+            </Nav.Link>
+          </Nav>
+
+          <Button
+            variant="dark"
+            className="rounded-pill position-relative bottom-0 mt-2 mt-md-0"
+            title="Your cart"
+            size="lg"
+            onClick={openNavCart}
           >
-            {cartQuantity}
-          </div>
-        </Button>
+            <HiShoppingCart />
+            <div
+              id="cart-count"
+              className="position-absolute bg-info rounded-circle"
+            >
+              {cartQuantity}
+            </div>
+          </Button>
+        </NavbarBs.Collapse>
       </Container>
     </NavbarBs>
   );

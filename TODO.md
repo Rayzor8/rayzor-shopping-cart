@@ -22,3 +22,6 @@
 3. Styling Offcanvas components
 4. Create dynamic cart quantity navbar
 
+## TODOS 22/12/2022
+1. Layout Hompage UI
+2. Add animation 

@@ -15,13 +15,13 @@ import nodeLogo from '../../public/img/skills/nodejs.jpg';
 import Image from "next/image";
 
 const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1200 },
+    items: 4,
+  },
+  lg: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 1200, min: 1024 },
     items: 3,
   },
   tablet: {
@@ -29,7 +29,7 @@ const responsive = {
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 560, min: 0 },
     items: 1,
   },
 };
@@ -63,7 +63,7 @@ const Skills = () => {
               key={index}
               className="d-flex justify-content-center align-items-center flex-column"
             >
-              <Image src={logo.img} alt="logo" width="250" height="250" className="rounded "/>
+              <Image src={logo.img} alt="logo" width="250" height="250" className="rounded" />
               <h1 className="banner-title fs-1">{logo.name}</h1>
             </div>
           ))}
