@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Titan+One&family=Zen+Dots&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 
 :root {
   --font-inter: "Inter", sans-serif;
-  --zen-dots: "Zen Dots", sans-serif;
   --titan-one: "Titan One", cursive;
 }
 
@@ -10,7 +9,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: var(--font-inter);
+  font-family: var(--font-inter) !important;
   overflow-y: scroll;
   width: 100vw;
 }

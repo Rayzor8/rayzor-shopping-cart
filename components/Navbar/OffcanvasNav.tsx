@@ -5,6 +5,9 @@ import { Products } from "../../types/storeTypes";
 import OffcanvasNavItem from "./OffcanvasNavItem";
 import { HiShoppingCart } from "react-icons/hi";
 import { BiSad } from "react-icons/bi";
+import { BsFillBagCheckFill } from "react-icons/bs";
+
+
 type OffcanvasNavProps = {
   isOpenNavCart: boolean;
 };
@@ -21,7 +24,7 @@ const OffcanvasNav = ({ isOpenNavCart }: OffcanvasNavProps) => {
         <BiSad className="fs-4" /> Empty Cart...
       </p>
     );
-  
+
   const getTotalPrice = () => {
     return cartItems.reduce((total, cartItem) => {
       const findItem = products?.find((product) => product.id === cartItem.id);
@@ -47,7 +50,13 @@ const OffcanvasNav = ({ isOpenNavCart }: OffcanvasNavProps) => {
             Total : $ {getTotalPrice()}
           </span>
           {getTotalPrice() ? (
-            <Button onClick={openModalPayment} className="w-max">Purchase</Button>
+            <Button
+              onClick={openModalPayment}
+              className="btn-dark text-info d-flex gap-2 align-items-center justify-content-center"
+            >
+              <BsFillBagCheckFill />
+              <span>Purchase</span>
+            </Button>
           ) : (
             ""
           )}

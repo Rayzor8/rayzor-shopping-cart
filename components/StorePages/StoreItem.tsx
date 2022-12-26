@@ -2,15 +2,9 @@ import React from "react";
 import { Card, Stack } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
-import { AddToCartBtn, InputsCartQuantity } from "../Buttons";
 import { Products } from "../../types/storeTypes";
-import { useCartContext } from "../../context/CartContext";
 
 const StoreItem = (props: Products) => {
-  const { getItemQuantity } = useCartContext();
-  const { id } = props;
-
-
   return (
     <Card className="h-100 shadow-lg border-0">
       <Card.Body className="d-flex flex-column justify-content-end align-items-center g-2 text-center">

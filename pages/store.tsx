@@ -1,11 +1,12 @@
-import React, { useState ,SetStateAction} from "react";
+import React, { useState, } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import dynamic from "next/dynamic";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps } from "next";
 import { SearchForm } from "../components/Forms";
 import { SelectCategory } from "../components/Dropdowns";
 import { Products } from "../types/storeTypes";
 import { useCartContext } from "../context/CartContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DynamicStoreItem = dynamic(
   () => import("../components/StorePages/StoreItem"),
@@ -39,7 +40,10 @@ const Store = () => {
     <Stack gap={4}>
       <Row className="g-3">
         <Col xs={12} lg={6}>
-          <SearchForm  productsData={productsData} setProductsData={setProductsData}/>
+          <SearchForm
+            productsData={productsData}
+            setProductsData={setProductsData}
+          />
         </Col>
         <Col xs={12} lg={6}>
           <SelectCategory
@@ -50,15 +54,26 @@ const Store = () => {
       </Row>
 
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
-        {productsData.map((product) => {
-          return (
-            <Col key={product.id}>
-              <React.Suspense fallback={`Loading...`}>
-                <DynamicStoreItem {...product} />
-              </React.Suspense>
-            </Col>
-          );
-        })}
+        <AnimatePresence>
+          {productsData.map((product) => {
+            return (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                layout
+                transition={{ layout: { duration: 0.3 } }}
+              >
+                <Col style={{ height: "100%" }}>
+                  <React.Suspense fallback={`Loading...`}>
+                    <DynamicStoreItem {...product} />
+                  </React.Suspense>
+                </Col>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
       </Row>
     </Stack>
   );

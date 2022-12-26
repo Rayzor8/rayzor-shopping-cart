@@ -39,3 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 1. Next JS
 2. Typescript
 3. React Bootstrap
+4. Framer Motion
