@@ -71,6 +71,7 @@ const Details = (props: PageProps) => {
             width={420}
             height={380}
             priority={true}
+            className="store-detail-img"
           />
         </Col>
         <Col xl={4}>

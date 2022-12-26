@@ -110,6 +110,9 @@ a {
   .banner-title {
     font-size: 2rem;
   }
+  .store-detail-img{
+    width: 340px;
+  }
 }
 
 @media screen and (max-width: 360px) {
@@ -119,5 +122,9 @@ a {
 
   .banner-title {
     font-size: 2rem;
+  }
+
+  .store-detail-img{
+    width: 100%;
   }
 }
